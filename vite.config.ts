@@ -9,4 +9,7 @@ export default defineConfig({
     tailwindcss(),
   ],
   base: '/dnc-building/',
+  build: {
+    outDir: 'docs', // 👈 this is the key change
+  },
 })
