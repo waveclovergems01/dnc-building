@@ -1,0 +1,135 @@
+[
+  {
+    "jobId": 1,
+    "jobName": "Warrior",
+    "stats": {
+      "charStats": {
+        "hp": 500, "mp": 300, "mpRecovery": 4, "str": 20, "agi": 8, "int": 5, "vit": 12,
+        "pdef": 12, "mdef": 6, "cri": 10, "stun": 30, "paralyze": 25, "finalDmg": 0,
+        "criResist": 30, "stunResist": 25, "paralyzeResist": 20, "movementSpeed": 420
+      },
+      "basicStats": {
+        "atkMax": 14, "atkMin": 10, "matkMax": 4, "matkMin": 2
+      },
+      "elementalStats": {
+        "fireAtk": 0.0, "iceAtk": 0.0, "lightAtk": 0.0, "darkAtk": 0.0,
+        "fireDef": 0.0, "iceDef": 0.0, "lightDef": 0.0, "darkDef": 0.0
+      }
+    },
+    "subJobs": [
+      { "jobId": 101, "jobName": "Sword Master"},
+      { "jobId": 102, "jobName": "Mercenary"}
+    ]
+  },
+  {
+    "jobId": 2,
+    "jobName": "Archer",
+    "stats": {
+      "charStats": {
+        "hp": 420, "mp": 420, "mpRecovery": 6, "str": 12, "agi": 18, "int": 8, "vit": 10,
+        "pdef": 8, "mdef": 8, "cri": 20, "stun": 20, "paralyze": 30, "finalDmg": 0,
+        "criResist": 28, "stunResist": 22, "paralyzeResist": 30, "movementSpeed": 440
+      },
+      "basicStats": {
+        "atkMax": 12, "atkMin": 8, "matkMax": 6, "matkMin": 4
+      },
+      "elementalStats": {
+        "fireAtk": 0.0, "iceAtk": 0.0, "lightAtk": 0.0, "darkAtk": 0.0,
+        "fireDef": 0.0, "iceDef": 0.0, "lightDef": 0.0, "darkDef": 0.0
+      }
+    },
+    "subJobs": [
+      { "jobId": 201, "jobName": "Bow Master"},
+      { "jobId": 202, "jobName": "Acrobat"}
+    ]
+  },
+  {
+    "jobId": 3,
+    "jobName": "Sorceress",
+    "stats": {
+      "charStats": {
+        "hp": 400, "mp": 600, "mpRecovery": 7, "str": 6, "agi": 10, "int": 24, "vit": 10,
+        "pdef": 6, "mdef": 14, "cri": 8, "stun": 15, "paralyze": 25, "finalDmg": 0,
+        "criResist": 20, "stunResist": 18, "paralyzeResist": 22, "movementSpeed": 410
+      },
+      "basicStats": {
+        "atkMax": 6, "atkMin": 4, "matkMax": 14, "matkMin": 10
+      },
+      "elementalStats": {
+        "fireAtk": 0.0, "iceAtk": 0.0, "lightAtk": 0.0, "darkAtk": 0.0,
+        "fireDef": 0.0, "iceDef": 0.0, "lightDef": 0.0, "darkDef": 0.0
+      }
+    },
+    "subJobs": [
+      { "jobId": 301, "jobName": "Elemental Lord"},
+      { "jobId": 302, "jobName": "Force User"}
+    ]
+  },
+  {
+    "jobId": 4,
+    "jobName": "Cleric",
+    "stats": {
+      "charStats": {
+        "hp": 480, "mp": 480, "mpRecovery": 5, "str": 18, "agi": 4, "int": 12, "vit": 16,
+        "pdef": 9, "mdef": 9, "cri": 14, "stun": 45, "paralyze": 54, "finalDmg": 0,
+        "criResist": 42, "stunResist": 40, "paralyzeResist": 54, "movementSpeed": 420
+      },
+      "basicStats": {
+        "atkMax": 10, "atkMin": 10, "matkMax": 6, "matkMin": 6
+      },
+      "elementalStats": {
+        "fireAtk": 0.0, "iceAtk": 0.0, "lightAtk": 0.0, "darkAtk": 0.0,
+        "fireDef": 0.0, "iceDef": 0.0, "lightDef": 0.0, "darkDef": 0.0
+      }
+    },
+    "subJobs": [
+      { "jobId": 401, "jobName": "Paladin"},
+      { "jobId": 402, "jobName": "Priest"}
+    ]
+  },
+  {
+    "jobId": 5,
+    "jobName": "Academic",
+    "baseStats": { "str": 5, "agi": 10, "int": 15, "vit": 10 },
+    "stats": {
+      "charStats": {
+        "hp": 460, "mp": 520, "mpRecovery": 6, "str": 8, "agi": 12, "int": 18, "vit": 10,
+        "pdef": 8, "mdef": 12, "cri": 12, "stun": 35, "paralyze": 30, "finalDmg": 0,
+        "criResist": 30, "stunResist": 25, "paralyzeResist": 28, "movementSpeed": 430
+      },
+      "basicStats": {
+        "atkMax": 8, "atkMin": 6, "matkMax": 12, "matkMin": 8
+      },
+      "elementalStats": {
+        "fireAtk": 0.0, "iceAtk": 0.0, "lightAtk": 0.0, "darkAtk": 0.0,
+        "fireDef": 0.0, "iceDef": 0.0, "lightDef": 0.0, "darkDef": 0.0
+      }
+    },
+    "subJobs": [
+      { "jobId": 501, "jobName": "Engineer"},
+      { "jobId": 502, "jobName": "Alchemist"}
+    ]
+  },
+  {
+    "jobId": 6,
+    "jobName": "Kali",
+    "stats": {
+      "charStats": {
+        "hp": 450, "mp": 500, "mpRecovery": 6, "str": 12, "agi": 10, "int": 22, "vit": 10,
+        "pdef": 8, "mdef": 14, "cri": 10, "stun": 28, "paralyze": 35, "finalDmg": 0,
+        "criResist": 32, "stunResist": 24, "paralyzeResist": 30, "movementSpeed": 420
+      },
+      "basicStats": {
+        "atkMax": 9, "atkMin": 7, "matkMax": 13, "matkMin": 9
+      },
+      "elementalStats": {
+        "fireAtk": 0.0, "iceAtk": 0.0, "lightAtk": 0.0, "darkAtk": 0.0,
+        "fireDef": 0.0, "iceDef": 0.0, "lightDef": 0.0, "darkDef": 0.0
+      }
+    },
+    "subJobs": [
+      { "jobId": 601, "jobName": "Screamer"},
+      { "jobId": 602, "jobName": "Dancer"}
+    ]
+  }
+]
