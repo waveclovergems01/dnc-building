@@ -10,7 +10,7 @@ export interface CharStats {
   mdef: number;
   cri: number;
   stun: number;
-  palayze: number;
+  paralyze: number;
   finalDmg: number;
   criResist: number;
   stunResist: number;
