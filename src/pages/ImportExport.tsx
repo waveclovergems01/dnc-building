@@ -2,40 +2,27 @@
 import {
   getClass1,
   getClass2,
-  setClass1,
-  setClass2,
-  setSkillLevel,
-  getAllSkillLevels
+  getAllSkillLevels,
 } from './Memory';
 import { useState } from 'react';
-import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
+import { compressToEncodedURIComponent } from 'lz-string';
 
-interface ExportedSkillData {
+export interface ExportedSkillData {
   class1: string;
   class2: string;
   skills: Record<string, Record<string, number>>;
 }
 
+function encodeData(data: ExportedSkillData): string {
+  const json = JSON.stringify(data);
+  return compressToEncodedURIComponent(json);
+}
+
 export default function ImportExport() {
-  const [importText, setImportText] = useState('');
-  const [exportText, setExportText] = useState('');
+  const [url, setUrl] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const encodeData = (data: ExportedSkillData): string => {
-    const json = JSON.stringify(data);
-    return compressToEncodedURIComponent(json);
-  };
-
-  const decodeData = (encoded: string): ExportedSkillData | null => {
-    try {
-      const json = decompressFromEncodedURIComponent(encoded);
-      return JSON.parse(json || '{}') as ExportedSkillData;
-    } catch {
-      return null;
-    }
-  };
-
-  const handleExport = () => {
+  const handleGenerateUrl = () => {
     const data: ExportedSkillData = {
       class1: getClass1(),
       class2: getClass2(),
@@ -53,75 +40,46 @@ export default function ImportExport() {
     });
 
     const encoded = encodeData(data);
-    setExportText(encoded);
+    const fullUrl = `${window.location.origin}${window.location.pathname}?d=${encoded}`;
+    setUrl(fullUrl);
     setCopied(false);
   };
 
-  const handleImport = () => {
+  const handleCopyUrl = async () => {
     try {
-      const parsed = decodeData(importText);
-      if (!parsed) throw new Error();
-
-      setClass1(parsed.class1 || '');
-      setClass2(parsed.class2 || '');
-
-      if (parsed.skills) {
-        Object.entries(parsed.skills).forEach(([cls, skillMap]) => {
-          Object.entries(skillMap).forEach(([id, level]) => {
-            setSkillLevel(cls, id, level);
-          });
-        });
-      }
-
-      alert('นำเข้าสำเร็จจากรหัสที่ถูกเข้ารหัสแล้ว');
-    } catch {
-      alert('ไม่สามารถถอดรหัสข้อมูลได้');
-    }
-  };
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(exportText);
+      await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      alert('ไม่สามารถคัดลอกได้');
+      alert('ไม่สามารถคัดลอก URL ได้');
     }
   };
 
   return (
     <div className="space-y-4 text-white">
-      <div className="flex gap-2">
-        <button onClick={handleExport} className="px-4 py-1 bg-blue-600 rounded shadow">
-          Export Encoded
-        </button>
-        <button
-          onClick={handleCopy}
-          disabled={!exportText}
-          className="px-4 py-1 bg-emerald-600 rounded shadow disabled:opacity-50"
-        >
-          {copied ? 'Copied!' : 'Copy'}
-        </button>
-      </div>
-
-      <textarea
-        rows={6}
-        className="w-full p-2 bg-black border border-gray-500 text-green-300"
-        value={exportText}
-        readOnly
-      />
-
-      <textarea
-        rows={6}
-        className="w-full p-2 bg-gray-900 border border-gray-500"
-        value={importText}
-        onChange={(e) => setImportText(e.target.value)}
-        placeholder="วางรหัสที่ถูกเข้ารหัสไว้ที่นี่"
-      />
-
-      <button onClick={handleImport} className="px-4 py-1 bg-green-600 rounded shadow">
-        Import Encoded
+      <button
+        onClick={handleGenerateUrl}
+        className="px-4 py-1 bg-blue-600 rounded shadow"
+      >
+        Generate Share URL
       </button>
+
+      {url && (
+        <>
+          <textarea
+            rows={4}
+            className="w-full p-2 bg-black border border-gray-500 text-green-300"
+            value={url}
+            readOnly
+          />
+          <button
+            onClick={handleCopyUrl}
+            className="px-4 py-1 bg-purple-600 rounded shadow"
+          >
+            {copied ? 'URL Copied!' : 'Copy URL'}
+          </button>
+        </>
+      )}
     </div>
   );
 }
