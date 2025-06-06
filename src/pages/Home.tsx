@@ -56,12 +56,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div>
-                <ClassSelect label='' onSelect={handleClass2Select} options={class2Options} disabled={!class1} resetTrigger={resetClass2} />
-            </div>
-            {/* <div className="w-[330px] h-[90svh] border-4 border-white overflow-x-auto mt-2">
-                <LeftSideBlock stats={selectedStats} />
-            </div> */}
             <div className="flex h-[90svh] border-4 border-white mt-2 overflow-hidden">
                 <div className="w-1/5 overflow-y-auto bg-gray-800">
                     <LeftSideBlock stats={selectedStats} />

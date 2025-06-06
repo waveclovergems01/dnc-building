@@ -1,0 +1,438 @@
+{
+  "Cleric": {
+    "skills": [
+      {
+        "id": "block",
+        "name": "Block",
+        "icon": "Block.webp",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "Blocks incoming attacks using a shield.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 5,
+        "mpCost": "2% MP"
+      },
+      {
+        "id": "charge_bolt",
+        "name": "Charge Bolt",
+        "icon": "Charge_Bolt.webp",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Shoots a lightning bolt that stuns enemies.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 12,
+        "mpCost": "4% MP"
+      },
+      {
+        "id": "aura_restoration",
+        "name": "Aura Restoration",
+        "icon": "Aura_Restoration.webp",
+        "position": {
+          "row": 6,
+          "col": 1
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Improves HP recovery and resistance.",
+        "prerequisite": "aura_of_healing",
+        "type": "buff",
+        "cooldown": 20,
+        "mpCost": "4% MP"
+      },
+      {
+        "id": "conviction_aura",
+        "name": "Conviction Aura",
+        "icon": "Conviction_Aura.webp",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Increases attack damage to nearby allies.",
+        "prerequisite": "aura_restoration",
+        "type": "buff",
+        "cooldown": 20,
+        "mpCost": "5% MP"
+      },
+      {
+        "id": "goddess_relic",
+        "name": "Goddess Relic",
+        "icon": "Goddess_Relic.webp",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 15
+        },
+        "description": "Summons a relic that deals area damage.",
+        "prerequisite": "charge_bolt",
+        "type": "active",
+        "cooldown": 18,
+        "mpCost": "6% MP"
+      },
+      {
+        "id": "aerial_evasion",
+        "name": "Aerial Evasion",
+        "icon": "Aerial_Evasion.webp",
+        "position": {
+          "row": 5,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 1
+        },
+        "description": "Allows evasion while airborne.",
+        "prerequisite": null,
+        "type": "passive",
+        "cooldown": 30,
+        "mpCost": "0"
+      },
+      {
+        "id": "counter_blow",
+        "name": "Counter Blow",
+        "icon": "Counter_Blow.webp",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "Counter attack after blocking.",
+        "prerequisite": "block",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "dash",
+        "name": "Dash",
+        "icon": "Dash.webp",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 1
+        },
+        "description": "Quickly dash forward.",
+        "prerequisite": null,
+        "type": "movement",
+        "cooldown": 1,
+        "mpCost": "1% MP"
+      },
+      {
+        "id": "dropkick",
+        "name": "Dropkick",
+        "icon": "Dropkick.webp",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "A kick attack from the air.",
+        "prerequisite": "dash",
+        "type": "active",
+        "cooldown": 8,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "divine_combo",
+        "name": "Divine Combo",
+        "icon": "Divine_Combo.webp",
+        "position": {
+          "row": 2,
+          "col": 1
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Combos divine attacks for extra damage.",
+        "prerequisite": "counter_blow",
+        "type": "active",
+        "cooldown": 15,
+        "mpCost": "5% MP"
+      },
+      {
+        "id": "lightning_strike",
+        "name": "Lightning Strike",
+        "icon": "Lightning_Strike.webp",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Strikes lightning on enemies, dealing magic damage.",
+        "prerequisite": "charge_bolt",
+        "type": "active",
+        "cooldown": 12,
+        "mpCost": "4% MP"
+      },
+      {
+        "id": "low_kick",
+        "name": "Low Kick",
+        "icon": "Low_Kick.webp",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "A quick kick aimed at the enemy’s legs to knock them down.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 6,
+        "mpCost": "2% MP"
+      },
+      {
+        "id": "mental_mastery",
+        "name": "Mental Mastery",
+        "icon": "Mental_Mastery.webp",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Increases maximum MP.",
+        "prerequisite": null,
+        "type": "passive",
+        "cooldown": 0,
+        "mpCost": "0"
+      },
+      {
+        "id": "mind_conquer",
+        "name": "Mind Conquer",
+        "icon": "Mind_Conquer.webp",
+        "position": {
+          "row": 6,
+          "col": 4
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Increases MP recovery rate.",
+        "prerequisite": "mental_mastery",
+        "type": "passive",
+        "cooldown": 0,
+        "mpCost": "0"
+      },
+      {
+        "id": "physical_mastery",
+        "name": "Physical Mastery",
+        "icon": "Physical_Mastery.webp",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Increases max HP.",
+        "prerequisite": null,
+        "type": "passive",
+        "cooldown": 0,
+        "mpCost": "0"
+      },
+      {
+        "id": "shield_blow",
+        "name": "Shield Blow",
+        "icon": "Shield_Blow.webp",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Deals physical damage with shield bash.",
+        "prerequisite": "block",
+        "type": "active",
+        "cooldown": 8,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "side_sick",
+        "name": "Side Kick",
+        "icon": "Side_Kick.webp",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "level": {
+          "min": 1,
+          "max": 1
+        },
+        "description": "Quick spinning kick to knock down nearby enemies.",
+        "prerequisite": "low_kick",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "heal",
+        "name": "Heal",
+        "icon": "Heal.webp",
+        "position": {
+          "row": 4,
+          "col": 3
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Restores HP of nearby allies instantly.",
+        "prerequisite": "aura_of_healing",
+        "type": "active",
+        "cooldown": 25,
+        "mpCost": "7% MP"
+      },
+      {
+        "id": "holy_bolt",
+        "name": "Holy Bolt",
+        "icon": "Holy_Bolt.webp",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "level": {
+          "min": 1,
+          "max": 10
+        },
+        "description": "Shoots a bolt of holy energy at the target.",
+        "prerequisite": "charge_bolt",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "4% MP"
+      },
+      {
+        "id": "holy_kick",
+        "name": "Holy Kick",
+        "icon": "Holy_Kick.webp",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "A powerful kick imbued with holy energy.",
+        "prerequisite": "half_turn_kick",
+        "type": "active",
+        "cooldown": 12,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "sliding_knee_kick",
+        "name": "Sliding Knee Kick",
+        "icon": "Sliding_Knee_Kick.webp",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "Slides forward to strike enemies with a knee.",
+        "prerequisite": "low_kick",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "sliding_step",
+        "name": "Sliding Step",
+        "icon": "Sliding_Step.webp",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "level": {
+          "min": 1,
+          "max": 1
+        },
+        "description": "Performs a quick sliding movement to evade.",
+        "prerequisite": "dash",
+        "type": "movement",
+        "cooldown": 3,
+        "mpCost": "1% MP"
+      },
+      {
+        "id": "stomping_kick",
+        "name": "Stomping Kick",
+        "icon": "Stomping_Kick.webp",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "Jumps and stomps enemies for knockdown.",
+        "prerequisite": "half_turn_kick",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "toughness",
+        "name": "Toughness",
+        "icon": "Toughness.webp",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "level": {
+          "min": 1,
+          "max": 5
+        },
+        "description": "Reduces knockback and hit recovery time.",
+        "prerequisite": null,
+        "type": "passive",
+        "cooldown": 0,
+        "mpCost": "0"
+      }
+    ]
+  }
+}
