@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import clericData from '../data/cleric_skill_tree.json';
 
 const skillIcons = import.meta.glob('../assets/img/cleric/skill/*.webp', {
   eager: true,
-  as: 'url',
+  query: '?url',
+  import: 'default',
 });
 
 interface Skill {
