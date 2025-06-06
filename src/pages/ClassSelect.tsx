@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getClass1, getClass2, subscribe } from './Memory'; // ✅ เพิ่ม
 
 interface ClassOption {
   jobId: number;
@@ -7,7 +8,7 @@ interface ClassOption {
 
 interface Props {
   onSelect: (jobName: string) => void;
-  label: string;
+  label: 'class1' | 'class2'; // ✅ ใช้ label เป็น class1 หรือ class2
   disabled?: boolean;
   resetTrigger?: boolean;
   options: ClassOption[];
@@ -20,6 +21,18 @@ export default function ClassSelect({ onSelect, label, disabled = false, resetTr
     setSelected('');
   }, [resetTrigger]);
 
+  // ✅ Sync กับ Memory เมื่อ import
+  useEffect(() => {
+    const updateFromMemory = () => {
+      const value = label === 'class1' ? getClass1() : getClass2();
+      setSelected(value);
+    };
+
+    updateFromMemory(); // ครั้งแรกตอน mount
+    const unsubscribe = subscribe(updateFromMemory);
+    return unsubscribe;
+  }, [label]);
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelected(value);
@@ -28,7 +41,9 @@ export default function ClassSelect({ onSelect, label, disabled = false, resetTr
 
   return (
     <div className="relative inline-block w-48">
-      <label className="block text-sm text-white mb-1">{label}</label>
+      <label className="block text-sm text-white mb-1">
+        {label === 'class1' ? 'Class 1' : 'Class 2'}
+      </label>
       <select
         value={selected}
         onChange={handleChange}

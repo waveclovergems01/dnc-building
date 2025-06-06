@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { type Stats } from '../type/ClassModel';
+import { getClass1, subscribe } from './Memory'; // ✅ import Memory
 
 interface Props {
   stats?: Stats;
@@ -67,6 +68,15 @@ const getLabelColor = (label: string): string => {
 };
 
 export default function LeftSideBlock({ stats }: Props) {
+  const [currentClass, setCurrentClass] = useState(getClass1()); // ✅ ใช้ Memory
+
+  useEffect(() => {
+  const unsubscribe = subscribe(() => {
+    setCurrentClass(getClass1());
+  });
+  return unsubscribe; // ✅ ไม่ต้อง wrap ใน arrow function
+}, []);
+
   const renderCharStats = stats?.charStats ?? Object.keys(charStatLabels).reduce((acc, key) => {
     acc[key] = undefined;
     return acc;
@@ -99,6 +109,11 @@ export default function LeftSideBlock({ stats }: Props) {
           renderRow(elementalLabels[key] || key, value)
         )
       )}
+
+      {/* ✅ ด้านล่างสุด: แสดงชื่อคลาสปัจจุบันจาก Memory */}
+      <div className="mt-4 border-t pt-2 text-center text-sm text-yellow-300">
+        Selected Class1: <span className="font-bold">{currentClass || '-'}</span>
+      </div>
     </div>
   );
 }

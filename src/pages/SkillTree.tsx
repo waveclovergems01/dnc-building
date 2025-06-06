@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 import clericData from '../data/cleric_skill_tree.json';
+import {
+  getSkillLevel,
+  setSkillLevel,
+} from './Memory'; // ✅ เชื่อมกับ Memory
 
 const skillIcons = import.meta.glob('../assets/img/cleric/skill/*.webp', {
   eager: true,
@@ -22,33 +26,41 @@ interface Skill {
 
 interface Props {
   resetKey?: number;
+  className: string; // ✅ รับชื่อคลาส เช่น "Cleric"
 }
 
-export default function SkillTree({ resetKey }: Props) {
-  const skills: Skill[] = clericData.Cleric.skills;
+export default function SkillTree({ resetKey, className }: Props) {
+  const skillData = clericData as Record<string, { skills: Skill[] }>;
+  const skills: Skill[] = skillData[className]?.skills ?? [];
 
   const initializeLevels = () =>
-    Object.fromEntries(skills.map((s) => [s.id, s.level.min]));
+    Object.fromEntries(
+      skills.map((s) => [s.id, getSkillLevel(className, s.id) || s.level.min])
+    );
 
   const [levels, setLevels] = useState<{ [id: string]: number }>(initializeLevels);
   const [tooltipId, setTooltipId] = useState<string | null>(null);
 
   useEffect(() => {
     setLevels(initializeLevels());
-  }, [resetKey]);
+  }, [resetKey, className]);
 
   const increaseLevel = (id: string, max: number) => {
-    setLevels((prev) => ({
-      ...prev,
-      [id]: prev[id] < max ? prev[id] + 1 : prev[id],
-    }));
+    setLevels((prev) => {
+      const newVal = Math.min(prev[id] + 1, max);
+      const updated = { ...prev, [id]: newVal };
+      setSkillLevel(className, id, newVal); // ✅ sync to memory
+      return updated;
+    });
   };
 
   const decreaseLevel = (id: string, min: number) => {
-    setLevels((prev) => ({
-      ...prev,
-      [id]: prev[id] > min ? prev[id] - 1 : prev[id],
-    }));
+    setLevels((prev) => {
+      const newVal = Math.max(prev[id] - 1, min);
+      const updated = { ...prev, [id]: newVal };
+      setSkillLevel(className, id, newVal); // ✅ sync to memory
+      return updated;
+    });
   };
 
   const renderSkillBox = (skill: Skill) => {
