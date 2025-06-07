@@ -1,15 +1,51 @@
 import { useEffect, useState } from 'react';
 import clericData from '../data/cleric_skill_tree.json';
+import warriorData from '../data/warrior_skill_tree.json';
+import swordmasterData from '../data/swordmaster_skill_tree.json';
 import {
   getSkillLevel,
   setSkillLevel,
-} from './Memory'; // ✅ เชื่อมกับ Memory
+} from './Memory';
 
-const skillIcons = import.meta.glob('../assets/img/cleric/skill/*.webp', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-});
+// โหลดไอคอนแบบแยกคลาส
+function getSkillIcons(className: string) {
+  switch (className) {
+    case 'Cleric':
+      return import.meta.glob('../assets/img/cleric/skill/*.webp', {
+        eager: true,
+        query: '?url',
+        import: 'default',
+      });
+    case 'Warrior':
+      return import.meta.glob('../assets/img/warrior/skill/*.png', {
+        eager: true,
+        query: '?url',
+        import: 'default',
+      });
+    case 'Sword Master':
+      return import.meta.glob('../assets/img/swordmaster/skill/*.png', {
+        eager: true,
+        query: '?url',
+        import: 'default',
+      });
+    default:
+      return {};
+  }
+}
+
+// โหลดข้อมูลสกิลแบบแยกคลาส
+function getSkillData(className: string): Skill[] {
+  switch (className) {
+    case 'Cleric':
+      return clericData.Cleric.skills;
+    case 'Warrior':
+      return warriorData.Warrior.skills;
+    case 'Sword Master':
+      return swordmasterData['Sword Master'].skills;
+    default:
+      return [];
+  }
+}
 
 interface Skill {
   id: string;
@@ -26,12 +62,12 @@ interface Skill {
 
 interface Props {
   resetKey?: number;
-  className: string; // ✅ รับชื่อคลาส เช่น "Cleric"
+  className: string;
 }
 
 export default function SkillTree({ resetKey, className }: Props) {
-  const skillData = clericData as Record<string, { skills: Skill[] }>;
-  const skills: Skill[] = skillData[className]?.skills ?? [];
+  const skills: Skill[] = getSkillData(className);
+  const skillIcons = getSkillIcons(className);
 
   const initializeLevels = () =>
     Object.fromEntries(
@@ -49,7 +85,7 @@ export default function SkillTree({ resetKey, className }: Props) {
     setLevels((prev) => {
       const newVal = Math.min(prev[id] + 1, max);
       const updated = { ...prev, [id]: newVal };
-      setSkillLevel(className, id, newVal); // ✅ sync to memory
+      setSkillLevel(className, id, newVal);
       return updated;
     });
   };
@@ -58,13 +94,27 @@ export default function SkillTree({ resetKey, className }: Props) {
     setLevels((prev) => {
       const newVal = Math.max(prev[id] - 1, min);
       const updated = { ...prev, [id]: newVal };
-      setSkillLevel(className, id, newVal); // ✅ sync to memory
+      setSkillLevel(className, id, newVal);
       return updated;
     });
   };
 
+  const getIconPath = (className: string, iconFile: string): string => {
+    switch (className) {
+      case 'Sword Master':
+        return `../assets/img/swordmaster/skill/${iconFile}`;
+      case 'Warrior':
+        return `../assets/img/warrior/skill/${iconFile}`;
+      case 'Cleric':
+        return `../assets/img/cleric/skill/${iconFile}`;
+      default:
+        return '';
+    }
+  };
+
   const renderSkillBox = (skill: Skill) => {
-    const iconPath = skillIcons[`../assets/img/cleric/skill/${skill.icon}`] as string;
+    const iconKey = getIconPath(className, skill.icon);
+    const iconPath = skillIcons[iconKey] as string;
 
     return (
       <div

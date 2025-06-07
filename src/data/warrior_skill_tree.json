@@ -1,0 +1,210 @@
+{
+  "Warrior": {
+    "skills": [
+      {
+        "id": "aerial_evasion",
+        "name": "Aerial Evasion",
+        "icon": "aerial evasion.png",
+        "position": { "row": 5, "col": 2 },
+        "level": { "min": 1, "max": 1 },
+        "description": "Allows evasion while airborne.",
+        "prerequisite": null,
+        "type": "passive",
+        "cooldown": 30,
+        "mpCost": "0"
+      },
+      {
+        "id": "circle_break",
+        "name": "Circle Break",
+        "icon": "circle break.png",
+        "position": { "row": 4, "col": 1 },
+        "level": { "min": 1, "max": 5 },
+        "description": "Spin and slash around you.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 6,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "dash",
+        "name": "Dash",
+        "icon": "dash.png",
+        "position": { "row": 3, "col": 2 },
+        "level": { "min": 1, "max": 1 },
+        "description": "Quickly dash forward.",
+        "prerequisite": null,
+        "type": "movement",
+        "cooldown": 1,
+        "mpCost": "1% MP"
+      },
+      {
+        "id": "dropkick",
+        "name": "Dropkick",
+        "icon": "dropkick.png",
+        "position": { "row": 2, "col": 4 },
+        "level": { "min": 1, "max": 5 },
+        "description": "Aerial kick that knocks enemies back.",
+        "prerequisite": "dash",
+        "type": "active",
+        "cooldown": 8,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "heavy_slash",
+        "name": "Heavy Slash",
+        "icon": "heavy slash.png",
+        "position": { "row": 1, "col": 1 },
+        "level": { "min": 1, "max": 10 },
+        "description": "A powerful slash with increased damage.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 5,
+        "mpCost": "2% MP"
+      },
+      {
+        "id": "highlander",
+        "name": "Highlander",
+        "icon": "highlander.png",
+        "position": { "row": 6, "col": 1 },
+        "level": { "min": 1, "max": 1 },
+        "description": "Temporarily boosts damage and reduces damage taken.",
+        "prerequisite": null,
+        "type": "buff",
+        "cooldown": 60,
+        "mpCost": "10% MP"
+      },
+      {
+        "id": "impact_punch",
+        "name": "Impact Punch",
+        "icon": "impact punch.png",
+        "position": { "row": 1, "col": 2 },
+        "level": { "min": 1, "max": 5 },
+        "description": "A heavy punch that stuns enemies.",
+        "prerequisite": "heavy_slash",
+        "type": "active",
+        "cooldown": 8,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "impact_wave",
+        "name": "Impact Wave",
+        "icon": "impact wave.png",
+        "position": { "row": 2, "col": 1 },
+        "level": { "min": 1, "max": 10 },
+        "description": "Sends out a shockwave that damages enemies in front.",
+        "prerequisite": "impact_punch",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "4% MP"
+      },
+      {
+        "id": "mental_mastery",
+        "name": "Mental Mastery",
+        "icon": "mental mastery.png",
+        "position": { "row": 5, "col": 4 },
+        "level": { "min": 1, "max": 10 },
+        "description": "Increases maximum MP.",
+        "prerequisite": null,
+        "type": "passive",
+        "cooldown": 0,
+        "mpCost": "0"
+      },
+      {
+        "id": "mind_conquer",
+        "name": "Mind Conquer",
+        "icon": "mind conquer.png",
+        "position": { "row": 6, "col": 4 },
+        "level": { "min": 1, "max": 10 },
+        "description": "Increases MP recovery rate.",
+        "prerequisite": "mental_mastery",
+        "type": "passive",
+        "cooldown": 0,
+        "mpCost": "0"
+      },
+      {
+        "id": "physical_mastery",
+        "name": "Physical Mastery",
+        "icon": "physical mastery.png",
+        "position": { "row": 5, "col": 3 },
+        "level": { "min": 1, "max": 10 },
+        "description": "Increases max HP.",
+        "prerequisite": null,
+        "type": "passive",
+        "cooldown": 0,
+        "mpCost": "0"
+      },
+      {
+        "id": "relieve",
+        "name": "Relieve",
+        "icon": "relieve.png",
+        "position": { "row": 6, "col": 2 },
+        "level": { "min": 1, "max": 1 },
+        "description": "Removes debuffs instantly.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 30,
+        "mpCost": "0"
+      },
+      {
+        "id": "soccer_kick",
+        "name": "Soccer Kick",
+        "icon": "soccer kick.png",
+        "position": { "row": 3, "col": 4 },
+        "level": { "min": 1, "max": 5 },
+        "description": "Kick a downed enemy with full force.",
+        "prerequisite": "dropkick",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "rising_slash",
+        "name": "Rising Slash",
+        "icon": "rising slash.png",
+        "position": { "row": 3, "col": 1 },
+        "level": { "min": 1, "max": 10 },
+        "description": "A fast upward slash that lifts enemies into the air.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 6,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "sweeping_kick",
+        "name": "Sweeping Kick",
+        "icon": "sweeping kick.png",
+        "position": { "row": 3, "col": 3 },
+        "level": { "min": 1, "max": 5 },
+        "description": "Sweep enemies' legs to knock them down.",
+        "prerequisite": "tumble",
+        "type": "active",
+        "cooldown": 10,
+        "mpCost": "3% MP"
+      },
+      {
+        "id": "tumble",
+        "name": "Tumble",
+        "icon": "tumble.png",
+        "position": { "row": 1, "col": 3 },
+        "level": { "min": 1, "max": 1 },
+        "description": "Quickly roll to evade attacks.",
+        "prerequisite": null,
+        "type": "movement",
+        "cooldown": 3,
+        "mpCost": "1% MP"
+      },
+      {
+        "id": "wake_attack",
+        "name": "Wake Attack",
+        "icon": "wake attack.png",
+        "position": { "row": 2, "col": 2 },
+        "level": { "min": 1, "max": 1 },
+        "description": "Attack immediately after falling.",
+        "prerequisite": null,
+        "type": "active",
+        "cooldown": 5,
+        "mpCost": "2% MP"
+      }
+    ]
+  }
+}

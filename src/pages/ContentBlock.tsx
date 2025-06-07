@@ -1,6 +1,8 @@
+// src/components/ContentBlock.tsx
 import { useState } from 'react';
 import SkillTree from './SkillTree';
-import ImportExport from './ImportExport'; // ✅ เพิ่ม import
+import Equipment from './Equipment';
+import ImportExport from './ImportExport';
 import { resetSkillLevels } from './Memory';
 
 interface Props {
@@ -17,26 +19,29 @@ function SkillNotFoundPanel({ className }: { className: string }) {
   );
 }
 
+const supportedClasses = ['Cleric', 'Warrior', 'Sword Master'];
+
 export default function ContentBlock({ class1, class2 }: Props) {
-  const [activeTab, setActiveTab] = useState<'class1' | 'class2' | 'importexport'>('class1');
+  const [activeTab, setActiveTab] = useState<'skilltree' | 'equipment' | 'importexport'>('skilltree');
+  const [innerTab, setInnerTab] = useState<'class1' | 'class2'>('class1');
   const [resetKeyClass1, setResetKeyClass1] = useState(0);
   const [resetKeyClass2, setResetKeyClass2] = useState(0);
 
   const handleReset = () => {
-    if (activeTab === 'class1') {
+    if (innerTab === 'class1') {
       resetSkillLevels(class1);
-      setResetKeyClass1(prev => prev + 1);
+      setResetKeyClass1((prev) => prev + 1);
     }
-    if (activeTab === 'class2') {
+    if (innerTab === 'class2') {
       resetSkillLevels(class2);
-      setResetKeyClass2(prev => prev + 1);
+      setResetKeyClass2((prev) => prev + 1);
     }
   };
 
   const renderSkillContent = (cls: string, resetKey: number) => {
-    if (cls === 'Cleric') {
+    if (supportedClasses.includes(cls)) {
       return (
-        <div className="w-fit space-y-2">
+        <div className="space-y-2">
           <div className="flex justify-between items-center">
             <p className="text-amber-200 mb-2 text-lg font-semibold">
               Skill Tree {cls}
@@ -62,27 +67,25 @@ export default function ContentBlock({ class1, class2 }: Props) {
       <div className="flex border-b border-amber-200">
         <button
           className={`px-4 py-2 text-sm font-bold ${
-            activeTab === 'class1'
+            activeTab === 'skilltree'
               ? 'border-b-2 border-yellow-300 text-yellow-300'
               : 'text-gray-300'
           }`}
-          onClick={() => setActiveTab('class1')}
+          onClick={() => setActiveTab('skilltree')}
         >
-          Skill {class1 || 'Class1'}
+          Skill Tree
         </button>
 
-        {class2 && (
-          <button
-            className={`px-4 py-2 text-sm font-bold ${
-              activeTab === 'class2'
-                ? 'border-b-2 border-yellow-300 text-yellow-300'
-                : 'text-gray-300'
-            }`}
-            onClick={() => setActiveTab('class2')}
-          >
-            Skill {class2}
-          </button>
-        )}
+        <button
+          className={`px-4 py-2 text-sm font-bold ${
+            activeTab === 'equipment'
+              ? 'border-b-2 border-yellow-300 text-yellow-300'
+              : 'text-gray-300'
+          }`}
+          onClick={() => setActiveTab('equipment')}
+        >
+          Equipment
+        </button>
 
         <button
           className={`px-4 py-2 text-sm font-bold ${
@@ -98,8 +101,46 @@ export default function ContentBlock({ class1, class2 }: Props) {
 
       {/* Content */}
       <div className="p-3">
-        {activeTab === 'class1' && class1 && renderSkillContent(class1, resetKeyClass1)}
-        {activeTab === 'class2' && class2 && renderSkillContent(class2, resetKeyClass2)}
+        {activeTab === 'skilltree' && (
+          <div className="grid grid-cols-[10%_40%_auto] gap-4">
+            <div className="flex flex-col space-y-2">
+              {class1 && (
+                <button
+                  className={`px-2 py-1 text-left rounded text-sm ${
+                    innerTab === 'class1'
+                      ? 'bg-yellow-500 text-black font-bold'
+                      : 'bg-gray-600 text-white'
+                  }`}
+                  onClick={() => setInnerTab('class1')}
+                >
+                  {class1}
+                </button>
+              )}
+              {class2 && (
+                <button
+                  className={`px-2 py-1 text-left rounded text-sm ${
+                    innerTab === 'class2'
+                      ? 'bg-yellow-500 text-black font-bold'
+                      : 'bg-gray-600 text-white'
+                  }`}
+                  onClick={() => setInnerTab('class2')}
+                >
+                  {class2}
+                </button>
+              )}
+            </div>
+
+            <div className="col-span-1">
+              {innerTab === 'class1' && class1 && renderSkillContent(class1, resetKeyClass1)}
+              {innerTab === 'class2' && class2 && renderSkillContent(class2, resetKeyClass2)}
+            </div>
+
+            <div className="col-span-1">
+              {/* Future block space */}
+            </div>
+          </div>
+        )}
+        {activeTab === 'equipment' && <Equipment />}
         {activeTab === 'importexport' && <ImportExport />}
       </div>
     </div>
